@@ -16,6 +16,11 @@
 
 	$(function() {
 
+    $('.actions input').on('click', function (e) {
+      console.log('click')
+      return false;
+    })
+
 		var	$window = $(window),
 			$body = $('body');
 
