@@ -1,6 +1,6 @@
 ## Setup Nginx
 
-on my laptop
+Laptop
 
 ```
 sudo apt-get update
@@ -15,4 +15,17 @@ sudo vim /etc/hosts
 127.0.0.1 example.com
 127.0.0.1 www.example.com
 127.0.0.1 api.example.com
+```
+
+Server
+```
+.
+├── admin
+│   └── index.html
+├── api
+│   ├── config.json
+│   ├── products.xml
+│   └── web
+└── home
+    └── index.html
 ```
