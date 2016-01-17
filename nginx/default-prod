@@ -1,3 +1,4 @@
+# main
 server {
         listen         80;
         server_name gamelanguage.com www.gamelanguage.com;
@@ -15,32 +16,25 @@ server {
         ssl_ciphers AES256+EECDH:AES256+EDH:!aNULL;
 
        # add Strict-Transport-Security to prevent man in the middle attacks
-       add_header Strict-Transport-Security "max-age=31536000";
+       add_header Strict-Transport-Security "max-age=31536000"; 
 
         location / {
           #root /usr/share/nginx/example;
-          root /home/deploy/projects/holnap;
+          root /home/deploy/projects/home;
           index index.html index.htm;
         }
 }
 
-upstream app {
-  server 127.0.0.1:3000;
-}
-
-upstream app {
-  server 127.0.0.1:3000;
-}
-
+# admin
 server {
-    listen       *:80;
-    server_name  api.gamelanguage.com;
-    rewrite      ^   https://$server_name$request_uri? redirect;
+        listen         80;
+        server_name admin.gamelanguage.com;
+        return         301 https://$server_name$request_uri;
 }
 
 server {
         listen         443 ssl;
-        server_name  api.gamelanguage.com;
+        server_name    admin.gamelanguage.com;
 
         ssl_certificate /etc/letsencrypt/live/gamelanguage.com/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/gamelanguage.com/privkey.pem;
@@ -48,12 +42,11 @@ server {
         ssl_prefer_server_ciphers on;
         ssl_ciphers AES256+EECDH:AES256+EDH:!aNULL;
 
-        location / {
-                proxy_buffering off;
-                proxy_set_header Host $host;
-                proxy_set_header X-Forwarded-For $remote_addr;
-                proxy_set_header X-Real-IP $remote_addr;
+       # add Strict-Transport-Security to prevent man in the middle attacks
+       add_header Strict-Transport-Security "max-age=31536000"; 
 
-                proxy_pass http://app;
+        location / {
+          root /home/deploy/projects/admin;
+          index index.html index.htm;
         }
 }
