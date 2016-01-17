@@ -13,5 +13,6 @@ sudo vim /etc/hosts
 
 ```
 127.0.0.1 example.com
+127.0.0.1 www.example.com
 127.0.0.1 api.example.com
 ```
